@@ -17,7 +17,10 @@ func setupRoutes() {
 	router.GET("/:url", coreAPI.ResolveURL)
 	router.POST("/v1/shorten", coreAPI.ShortenURL)
 
-	router.Run(os.Getenv("APP_PORT"))
+	err := router.Run(os.Getenv("APP_PORT"))
+	if err != nil {
+		panic("failed to get app port to run")
+	}
 }
 
 func main() {
